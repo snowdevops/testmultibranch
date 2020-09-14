@@ -4,38 +4,21 @@ pipeline {
       maven 'Maven'
    }
    stages {
-       stage("build") {
+       stage("buildbr1") {
            steps {
-              snDevOpsStep()
                echo "Building" 
                sleep 5
            }
        }
        
-      stage("test") {
-          stages {
-            stage('UAT unit test1.0') {
-              when {
-                branch 'dev'
-              }
-                  
-              steps {
-                  snDevOpsStep()
-                  echo "Testing UAT unit test1.0"
-                }
-              }
-            
-            stage('UAT unit test 2') {
-              steps {
-                  snDevOpsStep()
-                  echo "Testing UAT unit test 2"                   
-              }
-            }     
-          }           
+       stage("testbr1") {
+          steps {
+               echo "Testing" 
+               sleep 5
+           }           
         } 
-        stage("deploy") {
+        stage("deploybr1") {
            steps {
-              snDevOpsStep()
                echo "Deploying" 
                sleep 5
            }

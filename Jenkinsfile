@@ -6,9 +6,9 @@ pipeline {
    stages {
        stage("buildmbmaster") {
            steps {
-               snDevOpsStep()
+               //snDevOpsStep()
                echo "Building" 
-               sleep 5
+               sleep 1
            }
        }
        
@@ -16,26 +16,26 @@ pipeline {
           stages {
             stage('UAT unit test1.0') {
               steps {
-                 snDevOpsStep()
-                  echo "Testing UAT unit test1.0"
-                sleep 3
+                 //snDevOpsStep()
+                 echo "Testing UAT unit test1.0"
+                sleep 1
                 }
               }
             
             stage('UAT unit test 2') {
               steps {
-                 snDevOpsStep()
-                  echo "Testing UAT unit test 2"
-                sleep 3
+                 //snDevOpsStep()
+                 echo "Testing UAT unit test 2"
+                sleep 1
               }
             }     
           }           
         } 
         stage("deploymbmaster") {
            steps {
-               snDevOpsStep()
+               //snDevOpsStep()
                echo "Deploying" 
-               sleep 5
+               sleep 1
            }
         }
       }

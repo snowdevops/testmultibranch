@@ -6,6 +6,7 @@ pipeline {
    stages {
        stage("buildmbmaster") {
            steps {
+               snDevOpsStep()
                echo "Building" 
                sleep 5
            }
@@ -32,6 +33,7 @@ pipeline {
         } 
         stage("deploymbmaster") {
            steps {
+               snDevOpsStep()
                echo "Deploying" 
                sleep 5
            }

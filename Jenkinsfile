@@ -35,14 +35,18 @@ pipeline {
            stages {
                stage('dev') {
                  steps {
-                     //snDevOpsStep()
+                    when {
+                        env.BRANCH_NAME == "dev" { 
+                     }
                      echo "Deploying to dev" 
                      sleep 1
                  }
                }
                stage('prod') {
                  steps {
-                     //snDevOpsStep()
+                     when {
+                        env.BRANCH_NAME == "master" { 
+                     }
                      echo "Deploying to prod" 
                      sleep 1
                  }

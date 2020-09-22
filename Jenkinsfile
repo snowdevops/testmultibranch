@@ -36,7 +36,7 @@ pipeline {
                stage('dev') {
                  steps {
                     when {
-                        env.BRANCH_NAME == "dev" 
+                        branch 'dev'
                      }
                      echo "Deploying to dev"
                      sleep 1
@@ -45,7 +45,7 @@ pipeline {
                stage('prod') {
                  steps {
                      when {
-                        env.BRANCH_NAME == "master" 
+                        branch 'master' 
                      }
                      echo "Deploying to prod"
                      sleep 1

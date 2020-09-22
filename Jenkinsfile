@@ -32,10 +32,21 @@ pipeline {
           }           
         } 
         stage("deploymbmaster") {
-           steps {
-               //snDevOpsStep()
-               echo "Deploying" 
-               sleep 1
+           stages {
+               stage('dev') {
+                 steps {
+                     //snDevOpsStep()
+                     echo "Deploying to dev" 
+                     sleep 1
+                 }
+               }
+               stage('prod') {
+                 steps {
+                     //snDevOpsStep()
+                     echo "Deploying to prod" 
+                     sleep 1
+                 }
+               }
            }
         }
       }

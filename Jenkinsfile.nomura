@@ -1,0 +1,61 @@
+pipeline {
+   agent any
+   tools {
+      maven 'Maven'
+   }
+   stages {
+       stage("buildmbmaster") {
+          stages {
+            stage('module1') {
+              steps {
+                 snDevOpsStep()
+                 echo "Building module 2"
+                 sleep 1
+              }
+            }
+            stage('module1') {
+              steps {
+                 snDevOpsStep()
+                 echo "Building module 2"
+                 sleep 1
+              }
+            }
+          }
+      }
+      stage("testmbmaster") {
+          stages {
+            stage('UAT unit test1.0') {
+              steps {
+                 snDevOpsStep()
+                 echo "Testing UAT unit test1.0"
+                 sleep 1
+                }
+              }
+
+            stage('UAT unit test 2') {
+              steps {
+                 snDevOpsStep()
+                 echo "Testing UAT unit test 2"
+                sleep 1
+              }
+            }
+          }
+        }
+        stage("deploymbmaster") {
+           stages {
+               stage('dev') {
+                 steps {
+                     echo "Deploying to dev"
+                     sleep 1
+                 }
+               }
+               stage('prod') {
+                 steps {
+                     echo "Deploying to prod"
+                     sleep 1
+                 }
+               }
+           }
+        }
+      }
+  }

@@ -35,18 +35,18 @@ pipeline {
            stages {
                stage('dev') {
                  steps {
-                    when {
-                        branch 'dev'
-                     }
+                    //when {
+                    //    branch 'dev'
+                    // }
                      echo "Deploying to dev"
                      sleep 1
                  }
                }
                stage('prod') {
                  steps {
-                     when {
-                        branch 'master' 
-                     }
+                    // when {
+                     //   branch 'master' 
+                    // }
                      echo "Deploying to prod"
                      sleep 1
                  }

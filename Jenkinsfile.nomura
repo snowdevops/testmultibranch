@@ -13,13 +13,6 @@ pipeline {
                  sleep 1
               }
             }
-            stage('build-module2') {
-              steps {
-                 snDevOpsStep()
-                 echo "Building module 2"
-                 sleep 1
-              }
-            }
           }
       }
       stage("testmbmaster") {
@@ -29,14 +22,6 @@ pipeline {
                  snDevOpsStep()
                  echo "Testing UAT unit test1.0"
                  sleep 1
-                }
-              }
-
-            stage('UAT unit test 2') {
-              steps {
-                 snDevOpsStep()
-                 echo "Testing UAT unit test 2"
-                sleep 1
               }
             }
           }

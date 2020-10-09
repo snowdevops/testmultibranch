@@ -9,6 +9,7 @@ pipeline {
             stage('build-module1') {
               steps {
                  snDevOpsStep()
+                 snDevOpsChange()
                  echo "Building module 1"
                  sleep 1
               }

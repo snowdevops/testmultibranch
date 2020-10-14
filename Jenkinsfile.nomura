@@ -9,6 +9,7 @@ pipeline {
             stage('build-module1') {
               steps {
                  snDevOpsStep()
+                 snDevOpsChange()
                  echo "Building module 1"
                  sleep 1
               }
@@ -28,6 +29,7 @@ pipeline {
             stage('UAT unit test1.0') {
               steps {
                  snDevOpsStep()
+                 snDevOpsChange()
                  echo "Testing UAT unit test1.0"
                  sleep 1
               }

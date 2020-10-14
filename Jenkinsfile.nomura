@@ -9,7 +9,7 @@ pipeline {
             stage('build-module1') {
               steps {
                  snDevOpsStep()
-                 snDevOpsChange()
+                 
                  echo "Building module 1"
                  sleep 1
               }
@@ -17,6 +17,7 @@ pipeline {
             stage('build-module2') {
               steps {
                  snDevOpsStep()
+                 snDevOpsChange()
                  echo "Building module 2"
                  sleep 1
               }

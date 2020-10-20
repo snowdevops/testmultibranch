@@ -1,3 +1,7 @@
+def artifactname = "acm.jar"
+def repoName = "acm-repo"
+def pkgName = "acm-package"
+
 pipeline {
    agent any
    tools {
@@ -19,6 +23,7 @@ pipeline {
                  snDevOpsStep()
                  echo "Building module 2"
                  sleep 1
+                 snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}]}""")
               }
             }
           }
@@ -38,6 +43,7 @@ pipeline {
                  snDevOpsChange()
                  echo "Testing UAT unit test2.0"
                  sleep 1
+                 snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}]}""")
               }
             }
           }

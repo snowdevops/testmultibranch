@@ -46,6 +46,7 @@ pipeline {
            stages {
                stage('dev') {
                  steps {
+                     snDevOpsStep()
                      echo "Deploying to dev"
                      sleep 1
                  }

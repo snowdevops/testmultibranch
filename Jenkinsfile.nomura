@@ -1,0 +1,69 @@
+def artifactname = "acm.jar"
+def repoName = "acm-repo"
+def pkgName = "acm-package"
+
+pipeline {
+   agent any
+   tools {
+      maven 'Maven'
+   }
+   stages {
+       stage("buildmbmaster") {
+          stages {
+            stage('build-module1') {
+              steps {
+                 snDevOpsStep()
+                 snDevOpsChange()
+                 echo "Building module 1"
+                 sleep 1
+              }
+            }
+            stage('build-module2') {
+              steps {
+                 snDevOpsStep()
+                 echo "Building module 2"
+                 sleep 1
+                 snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}]}""")
+              }
+            }
+          }
+      }
+      stage("testmbmaster") {
+          stages {
+            stage('UAT unit test1.0') {
+              steps {
+                 snDevOpsStep()
+                 echo "Testing UAT unit test1.0"
+                 sleep 1
+              }
+            }
+            stage('UAT unit test2.0') {
+              steps {
+                 snDevOpsStep()
+                 snDevOpsChange()
+                 echo "Testing UAT unit test2.0"
+                 sleep 1
+                 snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}]}""")
+              }
+            }
+          }
+        }
+        stage("deploymbmaster") {
+           stages {
+               stage('dev') {
+                 steps {
+                     snDevOpsStep()
+                     echo "Deploying to dev"
+                     sleep 1
+                 }
+               }
+               stage('prod') {
+                 steps {
+                     echo "Deploying to prod"
+                     sleep 1
+                 }
+               }
+           }
+        }
+      }
+  }

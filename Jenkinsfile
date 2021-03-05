@@ -4,24 +4,53 @@ pipeline {
       maven 'Maven'
    }
    stages {
-       stage("buildbr1") {
+       stage("buildmbmaster") {
            steps {
-               echo "Building" 
-               sleep 5
+               snDevOpsStep()
+               echo "Building"
+               sleep 1
            }
        }
-       
-       stage("testbr1") {
-          steps {
-               echo "Testing" 
-               sleep 5
-           }           
-        } 
-        stage("deploybr1") {
-           steps {
-              snDevOpsChange()
-               echo "Deploying" 
-               sleep 5
+
+      stage("testmbmaster") {
+          stages {
+            stage('UAT unit test1.0') {
+              steps {
+                 snDevOpsStep()
+                 echo "Testing UAT unit test1.0"
+                sleep 1
+                }
+              }
+
+            stage('UAT unit test 2') {
+              steps {
+                 snDevOpsStep()
+                 echo "Testing UAT unit test 2"
+                sleep 1
+              }
+            }
+          }
+        }
+        stage("deploymbmaster") {
+           stages {
+               stage('dev') {
+                 steps {
+                    //when {
+                    //    branch 'dev'
+                    // }
+                     echo "Deploying to dev"
+                     sleep 1
+                 }
+               }
+               stage('prod') {
+                 steps {
+                    // when {
+                     //   branch 'master' 
+                    // }
+                     echo "Deploying to prod"
+                     sleep 1
+                 }
+               }
            }
         }
       }

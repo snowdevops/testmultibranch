@@ -15,10 +15,7 @@ pipeline {
                  snDevOpsStep()
                  snDevOpsChange()
                  echo "Building module 1"
-                 chars=abcd1234ABCD
-                 for i in {1..8} ; do
-                    echo -n "${chars:RANDOM%${#chars}:1}"
-                 done
+
                  sleep 1
               }
             }
@@ -38,6 +35,7 @@ pipeline {
               steps {
                  snDevOpsStep()
                  echo "Testing UAT unit test1.0"
+                 printLogs()
                  sleep 1
               }
             }
@@ -70,4 +68,11 @@ pipeline {
            }
         }
       }
+  }
+
+  def printLogs() {
+    chrs=abcd1234ABCD
+    for i in {1..100} ; do
+       echo -n "${chars:RANDOM%${#chrs}:1}"
+    done
   }

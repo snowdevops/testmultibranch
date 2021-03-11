@@ -15,7 +15,7 @@ pipeline {
                  snDevOpsStep()
                  snDevOpsChange()
                  echo "Building module 1"
-
+                 printLogs()
                  sleep 1
               }
             }
@@ -24,6 +24,7 @@ pipeline {
                  snDevOpsStep()
                  echo "Building module 2"
                  sleep 1
+                 printLogs()
                  snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}]}""")
               }
             }
@@ -71,8 +72,8 @@ pipeline {
   }
 
   def printLogs() {
-    chrs=abcd1234ABCD
-    for i in {1..100} ; do
-       echo -n "${chars:RANDOM%${#chrs}:1}"
-    done
+    sh "echo Going to echo a list"
+    for (int i = 0; i < 1000; i++) {
+        sh "echo Hello  dsfsfd fsd fds fdsf sdf sdf dsf dsf"
+    }
   }

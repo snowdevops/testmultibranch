@@ -1,8 +1,8 @@
 string=""
 branch=""
 number_of_commits=1
-file_name_substring=300000
-while [ $number_of_commits -le 100 ]
+file_name_substring=npfile
+while [ $number_of_commits -le 300 ]
 do
   string="touch randfile$((file_name_substring+number_of_commits)) && git add . && git commit -m '$((file_name_substring+number_of_commits)):randfile_$((file_name_substring+number_of_commits))'"
   echo $string

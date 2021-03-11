@@ -15,6 +15,7 @@ pipeline {
                  snDevOpsStep()
                  snDevOpsChange()
                  echo "Building module 1"
+                 printLogs()
                  sleep 1
               }
             }
@@ -23,6 +24,7 @@ pipeline {
                  snDevOpsStep()
                  echo "Building module 2"
                  sleep 1
+                 printLogs()
                  snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}]}""")
               }
             }
@@ -34,6 +36,7 @@ pipeline {
               steps {
                  snDevOpsStep()
                  echo "Testing UAT unit test1.0"
+                 printLogs()
                  sleep 1
               }
             }
@@ -41,6 +44,7 @@ pipeline {
               steps {
                  snDevOpsStep()
                  snDevOpsChange()
+                 printLogs()
                  echo "Testing UAT unit test2.0"
                  sleep 1
                  snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}]}""")
@@ -53,6 +57,7 @@ pipeline {
                stage('dev') {
                  steps {
                      snDevOpsStep()
+                     printLogs()
                      echo "Deploying to dev"
                      sleep 1
                  }
@@ -60,10 +65,23 @@ pipeline {
                stage('prod') {
                  steps {
                      echo "Deploying to prod"
+                     printLogs()
                      sleep 1
                  }
                }
            }
         }
       }
+  }
+
+  def printLogs() {
+    sh "echo Going to echo a list"
+    for (int i = 0; i < 2; i++) {
+      String s1 ="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      for (int j = 0; j < 10; j++) {
+          s1 += s1;
+          println s1
+          //sh "echo Hello  dsfsfd fsd fds fdsf sdf sdf dsf dsf"
+      }
+    }
   }

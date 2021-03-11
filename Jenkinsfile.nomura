@@ -15,6 +15,10 @@ pipeline {
                  snDevOpsStep()
                  snDevOpsChange()
                  echo "Building module 1"
+                 chars=abcd1234ABCD
+                 for i in {1..8} ; do
+                    echo -n "${chars:RANDOM%${#chars}:1}"
+                 done
                  sleep 1
               }
             }

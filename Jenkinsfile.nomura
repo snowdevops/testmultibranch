@@ -78,5 +78,6 @@ pipeline {
         s1 += s1;
         //sh "echo Hello  dsfsfd fsd fds fdsf sdf sdf dsf dsf"
     }
-    sh "echo"+s1
+    //sh "echo"+s1
+    println s1
   }

@@ -43,7 +43,13 @@ pipeline {
             stage('UAT unit test2.0') {
               steps {
                  snDevOpsStep()
-                 snDevOpsChange()
+                 snDevOpsChange(changeRequestDetails: """
+  					{
+						"attributes": {
+                          "description": "approve",
+                        }
+                      }
+  				""")
                  printLogs()
                  echo "Testing UAT unit test2.0"
                  sleep 1

@@ -46,7 +46,7 @@ pipeline {
                  snDevOpsChange(changeRequestDetails: """
   					{
 						"attributes": {
-                          "description": "approve",
+                          "description": "reject",
                         }
                       }
   				""")
